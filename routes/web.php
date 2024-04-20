@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,15 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// route basic
-Route::get('/about', function(){
-    return '<h1>Halo</h1>'
-    .'selamat datang di web saya<br>'
-    .'laravel,emang keren.';
+Route::get('/halaman2', function () {
+    return view('animals');
 });
 
-route::get('animals', function (){
-    $king="lion";
-    $hewan=["monkey", "dragonfly", "tiger","butterfly", "crocodile"];
-    return view ('animals_page', compact('king', 'hewan'));
+Route::get('/halaman3', function () {
+    return view('fruit');
+});
+
+route::get('/about', function (){
+    $nama = "muhamad rusydan";
+    $jk   = "laki-laki";
+    $pt   = "smk";
+    $pekerjaan = "imam taraweh";
+    return view('biodata',compact('nama', 'jk','pt', 'pekerjaan'));
+});
+
+route::get('/sample/{nama}',function (Request $request, $nama){
+    $nama2 = $nama;
+    return view('sample',compact('nama2'));
 });
